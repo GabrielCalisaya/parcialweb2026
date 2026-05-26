@@ -1,1 +1,83 @@
-<p>parcial-page works!</p>
+<form>
+  <div class="input-group input-group-lg">
+    <span class="input-group-text" id="inputGroup-sizing-lg">Receta</span>
+    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+      name="nombre" placeholder="ej. pizza" [(ngModel)]="nombre">
+    <button type="button" class="btn btn-primary btn-lg" (click)="buscar()">BUSCAR</button>
+  </div>
+</form>
+
+@if (recetas.length > 0) {
+<table border="1" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Ingredientes</th>
+      <th>Imagen</th>
+      <th>Detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (receta of recetas; track receta.name) {
+    <tr>
+      <td class="align-middle">{{ receta.name }}</td>
+      <td class="align-middle">{{ receta.description }}</td>
+      <td>
+        <ul>
+          @for (ing of receta.ingredients; track ing) {
+          <li class="align-middle">{{ ing.name }}</li>
+          }
+        </ul>
+      </td>
+      <td class="align-middle">...</td>
+      <td class="align-middle">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          (click)="traducir(receta.description)">
+          TRADUCIR
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+          DETALLE
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+}
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal" tabindex="-1"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" fs-5 id="exampleModalLabel">Traducción</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ traduccion }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal2" data-bs-toggle="modal" data-bs-target="#exampleModal2" tabindex="-1"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" fs-5 id="exampleModalLabel2">En Construccion</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal2" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>PROXIMAMENTE</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal2">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
