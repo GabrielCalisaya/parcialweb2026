@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ParcialService } from './parcial-service';
+import { ParcialApi } from './parcial-api';
 
-describe('ParcialService', () => {
-  let service: ParcialService;
+describe('ParcialApi', () => {
+  let service: ParcialApi;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ParcialService);
+    service = TestBed.inject(ParcialApi);
   });
 
   it('should be created', () => {
